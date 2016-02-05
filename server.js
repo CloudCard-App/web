@@ -22,16 +22,18 @@ require('./config/passport')(passport); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+//app.use(bodyParser()); // get information from html forms
 
 app.set('view engine', 'ejs'); // set up ejs for templating. HTML, awesomified.
 
 // required for passport
 app.use(session({secret: 'amalgamation'})); // signs sessions using this secret
-//app.use(bodyParser.json);
-//app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(passport.initialize()); //initalizes passport
 app.use(passport.session()); // persistent login sessions
+
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================

@@ -40,9 +40,14 @@ module.exports = function (app, passport) { //All the routing is handled here
         }));
 
     app.post('/studentPost', function (req, res) {
-        var body = req.body;
-        console.log("Body of post: " + JSON.stringify(body));
+        var name = req.body.name;
+        var pass = req.body.pass;
+
+        console.log("Name: " + name);
+        console.log("Pass: " + pass);
         res.status(200);
+        res.end();
+        //Stick into database
     });
 
 };
