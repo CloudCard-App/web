@@ -33,13 +33,13 @@ module.exports = function (passport) {
 
             clientID: configAuth.googleAuth.clientID,
             clientSecret: configAuth.googleAuth.clientSecret,
-            callbackURL: configAuth.googleAuth.callbackURL,
+            callbackURL: configAuth.googleAuth.callbackURL
 
         },
         function (token, refreshToken, profile, done) {
 
             // make the code asynchronous
-            // User.findOne won't fire until we have all our data back from Google
+            // userModel.findOne won't fire until we have all our data back from Google
             process.nextTick(function () {
 
                 // try to find the user based on their google id

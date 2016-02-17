@@ -27,15 +27,8 @@ userSchema.methods.validPassword = function (password) {
 
 // generate the code
 userSchema.methods.createCode = function () {
-    //var randomString = '';
-
-    //while (this.model('User').find({code: randomString})) { //Well, we gotta wait (synchronous)
-    //    console.log("Confliction! regenerating code")
-    //    randomString = utilities.getRandString(5);
-    //}
-
     return utilities.getRandString(5);
 };
 
 // create the models for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('userModel', userSchema);

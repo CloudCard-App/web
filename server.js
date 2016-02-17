@@ -10,12 +10,29 @@ var flash = require('connect-flash'); //Flash messages in session
 var morgan = require('morgan'); //Logs HTTP requests
 var cookieParser = require('cookie-parser'); //Parses cookie info
 var bodyParser = require('body-parser'); //Parses HTTP PUT and POST bodies
-var session = require('express-session'); //Sessions.
-
 var configDB = require('./config/database.js'); //Configuration stuff for my database.
 
+var session = require('express-session'); //Sessions.
+
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database, defined above
+mongoose.connect(configDB.studentData); // connect to our database, defined above
+
+var db = mongoose.connection;
+//var userModel;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+//    console.log("Connected to studentData collection!");
+//
+//    var userSchema = require('app/models/user');
+//    userModel = mongoose.model('userModel', userSchema);
+//
+
+    mongoose.connection.db.collectionNames(function (err, names) {
+        console.log("Collections: " + JSON.stringify(names));
+    });
+    app.listen(port);
+    console.log('The magic happens on port ' + port);
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -38,7 +55,3 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
-// launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);

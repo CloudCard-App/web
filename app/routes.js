@@ -39,17 +39,106 @@ module.exports = function (app, passport) { //All the routing is handled here
             failureRedirect: '/' //If the user really sucks at this
         }));
 
-    app.post('/studentPost', function (req, res) {
-        var name = req.body.name;
-        var pass = req.body.pass;
+    // Student Stats
+    app.get('/studentStats', isLoggedIn, function (req, res) {
 
-        console.log("Name: " + name);
-        console.log("Pass: " + pass);
-        res.status(200);
-        res.end();
-        //Stick into database
+        var timeFrame = 1; //Days to aggregate
+        var userCode = req.user.code;
+        console.log("userCode: " + userCode);
+        var documentCount = 0;
+
+        var Action = require('../app/models/action');
+
+        //Action.find({code: userCode}, function(err, data) {
+        //    if (err) {
+        //        console.error("Could not find with code!");
+        //    } else {
+        //        data.count(function (err, count) {
+        //            //documentCount = count;
+        //            //var graphData[count / timeFrame][2];
+        //
+        //            console.log("Count: " + count);
+        //            console.log("Here's the JSON: ");
+        //            data.forEach(function(obj) {
+        //                console.log(obj.id);
+        //            })
+        //
+        //        });
+        //        console.log("The data is: ");
+        //        console.log(data);
+        //    }
+        //});
+
+        Action.find({code: userCode}).exec(function (err, results) {
+            var count = results.length;
+            console.log("Count: " + count);
+            console.log("results: " + results);
+
+            console.log();
+
+            var timeIntervalToSmooth = 2;
+
+            // Create new empty two dimensional array
+            var data = new Array(count);
+            console.log("Data size: " + data.length);
+            for (var i = 0; i < data.length; i++) {
+                console.log("i = " + i);
+                data[i] = new Array(2);
+            }
+
+            data[0][0] = "Time";
+            data[0][1] = "Number of Users";
+
+            var insertionIndex = 1;
+
+            var currentUsers = 0;
+
+            var firstTime = Date.parse(results[0]._id.getTimestamp());
+            var lastCountedTime = firstTime;
+            for (var i = 0; i < count; i++) {
+                var thisJSON = results[i];
+                console.log("thisJSON: " + thisJSON);
+                if (thisJSON.action === "enterstudy") {
+                    currentUsers++;
+                    console.log("Adding current users!");
+                } else if (thisJSON.action === "exitstudy") {
+                    currentUsers--;
+                    console.log("Subtracting current users!");
+                }
+                var timeStamp = new Date(thisJSON._id.getTimestamp());
+                console.log("Timestamp: " + timeStamp);
+
+                if (timeStamp - lastCountedTime >= timeIntervalToSmooth) {
+                    lastCountedTime = timeStamp;
+                    var timeString = timeStamp.toString();
+                    data[insertionIndex][0] = timeString;
+                    data[insertionIndex][1] = +currentUsers;
+                    insertionIndex++;
+                    console.log("Wrote into array! insertionIndex = " + insertionIndex);
+                }
+            }
+
+            console.log("Here comes the data: -------------------------------");
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i]);
+            }
+
+            res.render('graphs.ejs', {
+                graphData: data
+            })
+
+        });
+
+        //res.render('graphs.ejs', {
+        //    graphData: [
+        //        ["Year", "Sales", "Expenses"],
+        //        ["2004", 1000, 400],
+        //        ["2005", 1170, 460],
+        //        ["2006", 660, 1120],
+        //        ["2007", 1030, 540]
+        //    ]
+        //});
     });
-
 };
 
 // route middleware to make sure a user is logged in
