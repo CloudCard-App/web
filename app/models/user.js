@@ -2,6 +2,7 @@
 var mongoose = require('mongoose'); //standard mongodb stuff
 var bcrypt = require('bcrypt-nodejs'); //password hashing function
 var utilities = require('../../app/utilities'); //function to get random string
+var codeSchema = require('./code');
 
 // define the schema for our user models
 var userSchema = mongoose.Schema({
@@ -12,8 +13,9 @@ var userSchema = mongoose.Schema({
         name: String
     },
 
-    code: String
+    codes: [codeSchema]
 }, {collection : 'users'});
+
 
 // generating a hash
 userSchema.methods.generateHash = function (password) {

@@ -59,7 +59,9 @@ module.exports = function (passport) {
                         newUser.google.token = token;
                         newUser.google.name = profile.displayName;
                         newUser.google.email = profile.emails[0].value; // pull the first email
-                        newUser.code = newUser.createCode(); //Generate the unique code for the teacher
+                        //newUser.codes = newUser.createCode(); //Generate the unique code for the teacher
+                        newUser.codes = [{"asdfg": "http://www.example.com"},
+                            {"ghjkl": "http://www.github.com"}];
 
                         // save the user
                         newUser.save(function (err) {

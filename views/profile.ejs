@@ -24,13 +24,38 @@
         <!-- GOOGLE INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
+                <h3 class="text-danger"><span class="fa fa-google-plus"></span> User Profile </h3>
 
                 <p>
-                    <strong>EMAIL</strong>: <%= user.google.email %><br>
                     <strong>NAME</strong>: <%= user.google.name %><br>
-                    <strong>CODE</strong>: <%= user.code %><br>
+                    <strong>EMAIL</strong>: <%= user.google.email %><br>
                 </p>
+
+                <ul>
+                    <% for(var i = 0; i < user.codes.length; i++) { %>
+                    <li>
+                        <a href='<%= user.codes[i].link %>'>
+                            <%= JSON.stringify(user.codes[i].code) %>
+                        </a>
+                        <%= JSON.stringify(user.codes[i].name) %>
+                    </li>
+                    <% } %>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Create new Deck </h3>
+
+                <form>
+                    Name: <br>
+                    <input type="text" name="name"><br>
+                    Link to Spreadsheet: <br>
+                    <input type="url" name="link"><br>
+                    <input type="submit" value="Create!">
+                </form>
 
             </div>
         </div>

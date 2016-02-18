@@ -12,6 +12,9 @@ module.exports = function (app, passport) { //All the routing is handled here
 
     // route for showing the profile page
     app.get('/profile', isLoggedIn, function (req, res) { //Only calls the second function if isLogged in calls next() if the user is logged in
+        console.log("user data: " + req.user);
+        console.log("user codes: " + req.user.codes);
+
         res.render('profile.ejs', { //renders into the response yay
             user: req.user // get the user out of session and pass to template
         });
@@ -48,26 +51,6 @@ module.exports = function (app, passport) { //All the routing is handled here
         var documentCount = 0;
 
         var Action = require('../app/models/action');
-
-        //Action.find({code: userCode}, function(err, data) {
-        //    if (err) {
-        //        console.error("Could not find with code!");
-        //    } else {
-        //        data.count(function (err, count) {
-        //            //documentCount = count;
-        //            //var graphData[count / timeFrame][2];
-        //
-        //            console.log("Count: " + count);
-        //            console.log("Here's the JSON: ");
-        //            data.forEach(function(obj) {
-        //                console.log(obj.id);
-        //            })
-        //
-        //        });
-        //        console.log("The data is: ");
-        //        console.log(data);
-        //    }
-        //});
 
         Action.find({code: userCode}).exec(function (err, results) {
             var count = results.length;
@@ -126,18 +109,7 @@ module.exports = function (app, passport) { //All the routing is handled here
             res.render('graphs.ejs', {
                 graphData: data
             })
-
         });
-
-        //res.render('graphs.ejs', {
-        //    graphData: [
-        //        ["Year", "Sales", "Expenses"],
-        //        ["2004", 1000, 400],
-        //        ["2005", 1170, 460],
-        //        ["2006", 660, 1120],
-        //        ["2007", 1030, 540]
-        //    ]
-        //});
     });
 };
 
