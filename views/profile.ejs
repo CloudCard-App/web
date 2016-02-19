@@ -49,12 +49,12 @@
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-google-plus"></span> Create new Deck </h3>
 
-                <form>
+                <form action="/createDeck" method="post">
                     Name: <br>
-                    <input type="text" name="name"><br>
+                    <input type="text" name="newDeckName"><br>
                     Link to Spreadsheet: <br>
-                    <input type="url" name="link"><br>
-                    <input type="submit" value="Create!">
+                    <input type="url" name="newDeckLink"><br>
+                    <input type="submit" name="newDeckCreate" value="Create!">
                 </form>
 
             </div>

@@ -5,6 +5,27 @@ module.exports = function (app, passport) { //All the routing is handled here
         res.render('index.ejs'); // load the index.ejs file
     });
 
+    app.post('/createDeck', isLoggedIn, function (req, res) {
+
+        var utilities = require('./utilities');
+        var mongoose = require('mongoose');
+        var codeSchema = require('./models/code');
+        var codeModel = mongoose.model('Code', codeSchema);
+
+        var randomCode = utilities.getRandString(5);
+        var deckName = req.body.newDeckName;
+        var deckLink = req.body.newDeckLink;
+
+        var newCode = new codeModel({code: randomCode, name: deckName, link: deckLink});
+
+        var userModel = require('./models/user');
+        userModel.findOne({'google.id': req.user.google.id}, function (err, user) {
+            user.codes.push(newCode);
+            user.save();
+            res.redirect('/profile/');
+        });
+    });
+
     // route for login form
     // route for processing the login form
     // route for signup form
@@ -12,9 +33,6 @@ module.exports = function (app, passport) { //All the routing is handled here
 
     // route for showing the profile page
     app.get('/profile', isLoggedIn, function (req, res) { //Only calls the second function if isLogged in calls next() if the user is logged in
-        console.log("user data: " + req.user);
-        console.log("user codes: " + req.user.codes);
-
         res.render('profile.ejs', { //renders into the response yay
             user: req.user // get the user out of session and pass to template
         });
