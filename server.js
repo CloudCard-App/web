@@ -1,35 +1,25 @@
-// set up ======================================================================
+// set up =====================================================================
 // get all the tools we need
 var express = require('express');
 var app = express(); //Create our app, using our new superpowers
 var port = process.env.PORT || 8080; //The port the app is running on
 var mongoose = require('mongoose'); //For MongoDB
-var passport = require('passport'); //Allows us to do authentication, such as OAuth2
+var passport = require('passport'); //Allows us to do authentication
 var flash = require('connect-flash'); //Flash messages in session
 
 var morgan = require('morgan'); //Logs HTTP requests
 var cookieParser = require('cookie-parser'); //Parses cookie info
 var bodyParser = require('body-parser'); //Parses HTTP PUT and POST bodies
-var configDB = require('./config/database.js'); //Configuration stuff for my database.
+var configDB = require('./config/database.js'); //Configuration stuff the db
 
 var session = require('express-session'); //Sessions.
 
-// configuration ===============================================================
-mongoose.connect(configDB.studentData); // connect to our database, defined above
+// configuration ==============================================================
+mongoose.connect(configDB.studentData); // connect to our database
 
 var db = mongoose.connection;
-//var userModel;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-//    console.log("Connected to studentData collection!");
-//
-//    var userSchema = require('app/models/user');
-//    userModel = mongoose.model('userModel', userSchema);
-//
-
-    mongoose.connection.db.collectionNames(function (err, names) {
-        console.log("Collections: " + JSON.stringify(names));
-    });
     app.listen(port);
     console.log('The magic happens on port ' + port);
 });
@@ -53,5 +43,6 @@ app.use(passport.session()); // persistent login sessions
 
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+// routes =====================================================================
+// load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport);
