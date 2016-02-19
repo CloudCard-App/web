@@ -29,19 +29,27 @@
                 <p>
                     <strong>NAME</strong>: <%= user.google.name %><br>
                     <strong>EMAIL</strong>: <%= user.google.email %><br>
+                    <strong>YOUR CODES</strong>: <br>
                 </p>
 
-                <ul>
-                    <% for(var i = 0; i < user.codes.length; i++) { %>
-                    <li>
-                        <a href='<%= user.codes[i].link %>'>
-                            <%= JSON.stringify(user.codes[i].code) %>
-                        </a>
-                        <%= JSON.stringify(user.codes[i].name) %>
-                    </li>
-                    <% } %>
-                </ul>
+                <table border="2">
+                    <tr>
+                        <th>CODE</th>
+                        <th>NAME</th>
+                        <th>LINK</th>
+                        <th>STATISTICS</th>
+                    </tr>
 
+                    <% for (var i = 0; i < user.codes.length; i++) { %>
+                    <tr>
+                        <td><%= user.codes[i].code %></td>
+                        <td><%= user.codes[i].name %></td>
+                        <% var link = user.codes[i].link; %>
+                        <td><a href='<%= link %>'> Edit the deck </a></td>
+                        <TD><a href="../studentStats/<%= user.codes[i].code %>"> View student activity </a></TD>
+                    </tr>
+                    <% } %>
+                </table>
             </div>
         </div>
 
