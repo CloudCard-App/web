@@ -1,11 +1,16 @@
 {
-  "name": "node-authentication",
+  "name": "teacherUI",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "monitor": "nodemon server.js",
-    "deploy": "gcloud preview app deploy app.yaml"
   },
+  "author": "Marc Bacvanski",
+  "author": "Marc Bacvanski",
+  "contributors": [{
+    "name": "Marc Bacvanski"
+    "email": "marc.bacvanski@gmail.com"
+  }],
   "dependencies": {
     "express": "~4.0.0",
     "ejs": "~0.8.5",
