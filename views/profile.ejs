@@ -15,7 +15,7 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1>Teacher Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -24,20 +24,20 @@
         <!-- GOOGLE INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> User Profile </h3>
+                <h3 class="text-danger">Teacher Profile </h3>
 
                 <p>
-                    <strong>NAME</strong>: <%= user.google.name %><br>
-                    <strong>EMAIL</strong>: <%= user.google.email %><br>
-                    <strong>YOUR CODES</strong>: <br>
+                    <strong>Name</strong>: <%= user.google.name %><br>
+                    <strong>Email</strong>: <%= user.google.email %><br>
+                    <strong>Access Codes</strong>: <br>
                 </p>
 
                 <table border="2">
                     <tr>
-                        <th>CODE</th>
-                        <th>NAME</th>
-                        <th>LINK</th>
-                        <th>STATISTICS</th>
+                        <th>Access Code</th>
+                        <th>Deck Name</th>
+                        <th>Link</th>
+                        <th>Statistics</th>
                     </tr>
 
                     <% for (var i = 0; i < user.codes.length; i++) { %>
@@ -55,13 +55,13 @@
 
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Create new Deck </h3>
+                <h3 class="text-danger"><span class="fa fa-pencil-square"></span> Create new Deck </h3>
 
                 <form action="/createDeck" method="post">
                     Name: <br>
-                    <input type="text" name="newDeckName"><br>
+                    <input type="text" name="newDeckName" size="42"><br>
                     Link to Spreadsheet: <br>
-                    <input type="url" name="newDeckLink"><br>
+                    <input type="url" name="newDeckLink" size="42"><br>
                     <input type="submit" name="newDeckCreate" value="Create!">
                 </form>
 

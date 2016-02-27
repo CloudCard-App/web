@@ -1,5 +1,5 @@
 module.exports = {
 
-    'studentData': "mongodb://10.128.0.7:80/studentsDataDB"
+    'studentData': "mongodb://localhost:27017/studentsDataDB"
 
 };

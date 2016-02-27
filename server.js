@@ -20,9 +20,10 @@ mongoose.connect(configDB.studentData); // connect to our database
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    app.listen(port, "10.128.0.11");
+    //app.listen(port, "10.128.0.11");
+    app.listen(port);
     console.log('The magic happens on port ' + port);
-    console.log('The url is 104.197.117.14:80');
+    //console.log('The url is 104.197.117.14:80');
 });
 
 require('./config/passport')(passport); // pass passport for configuration
