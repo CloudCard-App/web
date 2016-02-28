@@ -6,7 +6,6 @@
     "monitor": "nodemon server.js"
   },
   "author": "Marc Bacvanski",
-  "author": "Marc Bacvanski",
   "contributors": [{
     "name": "Marc Bacvanski",
     "email": "marc.bacvanski@gmail.com"
