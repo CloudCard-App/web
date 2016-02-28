@@ -3,12 +3,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "monitor": "nodemon server.js",
+    "monitor": "nodemon server.js"
   },
   "author": "Marc Bacvanski",
   "author": "Marc Bacvanski",
   "contributors": [{
-    "name": "Marc Bacvanski"
+    "name": "Marc Bacvanski",
     "email": "marc.bacvanski@gmail.com"
   }],
   "dependencies": {
