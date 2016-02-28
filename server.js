@@ -14,17 +14,27 @@ var configDB = require('./config/database.js'); //Configuration stuff the db
 
 var session = require('express-session'); //Sessions.
 
-// configuration ==============================================================
-mongoose.connect(configDB.studentData); // connect to our database
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    //app.listen(port, "10.128.0.11");
-    app.listen(port);
-    console.log('The magic happens on port ' + port);
-    //console.log('The url is 104.197.117.14:80');
-});
+var testing = false;
+if (testing) {
+    app.listen(port, "10.128.0.2");
+    console.log();
+    console.log("------------- TEST CONFIGURATION -------------");
+    console.log();
+    console.log("Listening on port: " + port);
+    console.log();
+} else {
+    // configuration and setup =======================================
+    mongoose.connect(configDB.studentData); // connect to our database
+
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function () {
+        // String is the internal IP of the Google Compute Engine
+        app.listen(port, "10.128.0.11");
+        console.log('The magic happens on port ' + port);
+    });
+}
 
 require('./config/passport')(passport); // pass passport for configuration
 
