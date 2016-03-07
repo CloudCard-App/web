@@ -6,4 +6,4 @@ module.exports.getRandString = function getRandString(length) {
         randomString += charSet.substring(randomPoz, randomPoz + 1);
     }
     return randomString;
-}
+};

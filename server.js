@@ -15,12 +15,17 @@ var configDB = require('./config/database.js'); //Configuration stuff the db
 var session = require('express-session'); //Sessions.
 
 
-var testing = false;
-if (testing) {
-    app.listen(port, "10.128.0.2");
+var noDBTesting = false;
+var noExternalIPTesting = false;
+if (noDBTesting) {
+    if (noExternalIPTesting) {
+        app.listen(port);
+    } else {
+        app.listen(port, "10.128.0.2");
+    }
     console.log();
     console.log("------------- TEST CONFIGURATION -------------");
-    console.log();
+    console.log("External IP: " + noExternalIPTesting);
     console.log("Listening on port: " + port);
     console.log();
 } else {
@@ -30,8 +35,16 @@ if (testing) {
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
-        // String is the internal IP of the Google Compute Engine
-        app.listen(port/*, "10.128.0.11"*/);
+        if (noExternalIPTesting) {
+            app.listen(port);
+        } else {
+            app.listen(port, "10.128.0.11");
+        }
+        console.log();
+        console.log("------------- DB CONFIGURATION -------------");
+        console.log("External IP: " + noExternalIPTesting);
+        console.log("Listening on port: " + port);
+        console.log();
         console.log('The magic happens on port ' + port);
     });
 }

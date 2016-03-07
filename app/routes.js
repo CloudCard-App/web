@@ -68,8 +68,6 @@ module.exports = function (app, passport) { //All the routing is handled here
 
         var url = req.url;
         var code = url.substr(url.lastIndexOf("/") + 1, url.length);
-        var timeFrame = 1; //Days to aggregate
-
         var Action = require('../app/models/action');
 
         Action.find({code: code}).exec(function (err, results) {
@@ -91,8 +89,7 @@ module.exports = function (app, passport) { //All the routing is handled here
 
                 var currentUsers = 0;
 
-                var firstTime = Date.parse(results[0]._id.getTimestamp());
-                var lastCountedTime = firstTime;
+                var lastCountedTime = Date.parse(results[0]._id.getTimestamp());
                 for (var i = 0; i < count; i++) {
                     var thisJSON = results[i];
                     if (thisJSON.action === "enterstudy") {
@@ -104,8 +101,7 @@ module.exports = function (app, passport) { //All the routing is handled here
 
                     if (timeStamp - lastCountedTime >= timeIntervalToSmooth) {
                         lastCountedTime = timeStamp;
-                        var timeString = timeStamp.toString();
-                        data[insertionIndex][0] = timeString;
+                        data[insertionIndex][0] = timeStamp.toString();
                         data[insertionIndex][1] = +currentUsers;
                         insertionIndex++;
                     }
