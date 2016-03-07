@@ -31,7 +31,7 @@ if (testing) {
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
         // String is the internal IP of the Google Compute Engine
-        app.listen(port, "10.128.0.11");
+        app.listen(port/*, "10.128.0.11"*/);
         console.log('The magic happens on port ' + port);
     });
 }
