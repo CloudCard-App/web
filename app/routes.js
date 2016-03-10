@@ -64,17 +64,23 @@ module.exports = function (app, passport) { //All the routing is handled here
         }));
 
     // Student Stats
+    // Will handle any code coming in from studentStats
     app.get('/studentStats/*', isLoggedIn, function (req, res) {
 
         var url = req.url;
         var code = url.substr(url.lastIndexOf("/") + 1, url.length);
+        // Action used to find actionLogs
         var Action = require('../app/models/action');
+        // User used to find name of deck from user
         var User = require('../app/models/user');
 
+        // Finds all actions where the code field matches
+        // Results is a cursor, we iterate over it.
         Action.find({code: code}).exec(function (err, results) {
             var count = results.length;
             if (count > 0) {
-
+                
+                // TODO: Make sure this works!!!!!!
                 var timeIntervalToSmooth = 2;
 
                 // Create new empty two dimensional array
@@ -86,6 +92,7 @@ module.exports = function (app, passport) { //All the routing is handled here
                 data[0][0] = "Time";
                 data[0][1] = "Number of Users";
 
+                // Where to store the current count
                 var insertionIndex = 1;
 
                 var currentUsers = 0;
@@ -93,13 +100,16 @@ module.exports = function (app, passport) { //All the routing is handled here
                 var lastCountedTime = Date.parse(results[0]._id.getTimestamp());
                 for (var i = 0; i < count; i++) {
                     var thisJSON = results[i];
+                    // Increments or decrements the count of users
                     if (thisJSON.action === "enterstudy") {
                         currentUsers++;
                     } else if (thisJSON.action === "exitstudy") {
                         currentUsers--;
                     }
+                    // Gets the integrated time stamp from the id
                     var timeStamp = new Date(thisJSON._id.getTimestamp());
-
+                    
+                    // Trying to smooth data
                     if (timeStamp - lastCountedTime >= timeIntervalToSmooth) {
                         lastCountedTime = timeStamp;
                         data[insertionIndex][0] = timeStamp.toString();
@@ -107,14 +117,13 @@ module.exports = function (app, passport) { //All the routing is handled here
                         insertionIndex++;
                     }
                 }
+                // FindOne returns not a cursor like Find, but only a single JavaScript object.
+                // "codes.code" finds a document within the array codes with field code equals code
+                // The projection {"codes.$" : 1} will only return that document that matched from
+                // within the array. When that's done, we check for errors and render.
                 User.findOne({"codes.code": code}, {"codes.$": 1}).exec(function (err, results) {
                     if (!err) {
-                        console.log("results: " + results);
-                        console.log("typeof results: " + typeof results);
-                        console.log("results keys: " + Object.keys(results));
-                        console.log("codes: " + results.codes);
                         var deckName = results.codes[0].name;
-                        console.log("deckName: " + deckName);
                         res.render('studentStats.ejs', {
                             graphData: data, deckName: deckName
                         });
