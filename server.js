@@ -16,7 +16,7 @@ var session = require('express-session'); //Sessions.
 
 
 var noDBTesting = false;
-var noExternalIPTesting = false;
+var noExternalIPTesting = true;
 if (noDBTesting) {
     if (noExternalIPTesting) {
         app.listen(port);

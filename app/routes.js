@@ -69,6 +69,7 @@ module.exports = function (app, passport) { //All the routing is handled here
         var url = req.url;
         var code = url.substr(url.lastIndexOf("/") + 1, url.length);
         var Action = require('../app/models/action');
+        var User = require('../app/models/user');
 
         Action.find({code: code}).exec(function (err, results) {
             var count = results.length;
@@ -106,9 +107,20 @@ module.exports = function (app, passport) { //All the routing is handled here
                         insertionIndex++;
                     }
                 }
-                res.render('studentStats.ejs', {
-                    graphData: data
-                })
+                User.findOne({"codes.code": code}, {"codes.$": 1}).exec(function (err, results) {
+                    if (!err) {
+                        console.log("results: " + results);
+                        console.log("typeof results: " + typeof results);
+                        console.log("results keys: " + Object.keys(results));
+                        console.log("codes: " + results.codes);
+                        var deckName = results.codes[0].name;
+                        console.log("deckName: " + deckName);
+                        res.render('studentStats.ejs', {
+                            graphData: data, deckName: deckName
+                        });
+                    }
+                });
+
             } else {
                 var profilePath = "../../profile/";
                 res.render('nodata.ejs', {profilePath: profilePath});
