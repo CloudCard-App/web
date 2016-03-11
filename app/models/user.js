@@ -13,6 +13,7 @@ var userSchema = mongoose.Schema({
         name: String
     },
 
+    // Array of codeSchema
     codes: [codeSchema]
 }, {collection : 'users'});
 
