@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FlashCardTeacherUI.iml" filepath="$PROJECT_DIR$/.idea/FlashCardTeacherUI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/FlashCardWeb.iml" filepath="$PROJECT_DIR$/.idea/FlashCardWeb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Servers150101.iml" filepath="$PROJECT_DIR$/.idea/Servers150101.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Flashcard-App-TeacherUI.iml" filepath="$PROJECT_DIR$/.idea/Flashcard-App-TeacherUI.iml" />
     </modules>
   </component>
 </project>
