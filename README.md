@@ -26,3 +26,11 @@ will start the server without connecting to a DB, but listening still listening 
 nodejs server.js true true ""
 ```
 will start the server without connecting to a DB nor an external IP. Instead, access the server at localhost:8080.
+
+
+## TODO:
+
+- [ ] Use [Commander](https://github.com/tj/commander.js) for arguments
+- [ ] Make database IP accessible as a flag
+- [ ] Ensure Google OAuth works properly
+- [ ] Write a better README
