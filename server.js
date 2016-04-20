@@ -14,14 +14,18 @@ var configDB = require('./config/database.js'); //Configuration stuff the db
 
 var session = require('express-session'); //Sessions.
 
+// Test configuration for not using any DB
+var noDBTesting = process.argv.array[2];
+// Test configuration for not using any externalIP
+var noExternalIPTesting = process.argv.array[3];
+// The IP address to use (ignored if noExternalIPTesting is true)
+var externalIP = process.argv.array[4];
 
-var noDBTesting = false;
-var noExternalIPTesting = true;
 if (noDBTesting) {
     if (noExternalIPTesting) {
         app.listen(port);
     } else {
-        app.listen(port, "10.128.0.2");
+        app.listen(port, externalIP);
     }
     console.log();
     console.log("------------- TEST CONFIGURATION -------------");
@@ -38,7 +42,7 @@ if (noDBTesting) {
         if (noExternalIPTesting) {
             app.listen(port);
         } else {
-            app.listen(port, "10.128.0.11");
+            app.listen(port, externalIP);
         }
         console.log();
         console.log("------------- DB CONFIGURATION -------------");
