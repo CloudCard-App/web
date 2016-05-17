@@ -2,7 +2,6 @@
 // get all the tools we need
 var express = require('express');
 var app = express(); //Create our app, using our new superpowers
-var port = process.env.PORT || 8080; //The port the app is running on
 var mongoose = require('mongoose'); //For MongoDB
 var passport = require('passport'); //Allows us to do authentication
 var flash = require('connect-flash'); //Flash messages in session
@@ -14,44 +13,32 @@ var configDB = require('./config/database.js'); //Configuration stuff the db
 
 var session = require('express-session'); //Sessions.
 
-// Test configuration for not using any DB
-var noDBTesting = process.argv.array[2];
-// Test configuration for not using any externalIP
-var noExternalIPTesting = process.argv.array[3];
-// The IP address to use (ignored if noExternalIPTesting is true)
-var externalIP = process.argv.array[4];
+var program = require('commander');
 
-if (noDBTesting) {
-    if (noExternalIPTesting) {
-        app.listen(port);
-    } else {
-        app.listen(port, externalIP);
-    }
-    console.log();
-    console.log("------------- TEST CONFIGURATION -------------");
-    console.log("External IP: " + noExternalIPTesting);
-    console.log("Listening on port: " + port);
-    console.log();
+program
+    .option('-d --dbIP <dbIP>', 'IP address of database', String)
+    .option('-e --extIP <externalIP>', 'External IP address', String, 'localhost')
+    .option('-p --port <port>', 'Port to listen on', Number, process.env.PORT || 8080);
+
+program.parse(process.argv);
+
+console.log("IP address of DB = " + program.dbIP);
+console.log("External IP = " + program.extIP);
+console.log("Port = " + program.port);
+
+// configuration and setup =======================================
+if (program.dbIP) {
+    mongoose.connect(program.dbIP); // connect to our database
 } else {
-    // configuration and setup =======================================
-    mongoose.connect(configDB.studentData); // connect to our database
-
-    var db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error:'));
-    db.once('open', function () {
-        if (noExternalIPTesting) {
-            app.listen(port);
-        } else {
-            app.listen(port, externalIP);
-        }
-        console.log();
-        console.log("------------- DB CONFIGURATION -------------");
-        console.log("External IP: " + noExternalIPTesting);
-        console.log("Listening on port: " + port);
-        console.log();
-        console.log('The magic happens on port ' + port);
-    });
+    mongoose.connect(configDB.studentData); // use default configuration file
 }
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    app.listen(program.port, program.extIP);
+    console.log("Listening on port     " + program.port);
+});
 
 require('./config/passport')(passport); // pass passport for configuration
 
