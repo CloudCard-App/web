@@ -30,7 +30,7 @@ will start the server without connecting to a DB nor an external IP. Instead, ac
 
 ## TODO:
 
-- [ ] Use [Commander](https://github.com/tj/commander.js) for arguments
-- [ ] Make database IP accessible as a flag
+- [x] Use [Commander](https://github.com/tj/commander.js) for arguments
+- [x] Make database IP accessible as a flag
 - [ ] Ensure Google OAuth works properly
 - [ ] Write a better README
