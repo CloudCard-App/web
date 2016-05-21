@@ -2,6 +2,10 @@
 // get all the tools we need
 var express = require('express');
 var app = express(); //Create our app, using our new superpowers
+
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
 var mongoose = require('mongoose'); //For MongoDB
 var passport = require('passport'); //Allows us to do authentication
 var flash = require('connect-flash'); //Flash messages in session

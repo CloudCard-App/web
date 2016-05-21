@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
           integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="/css/style.css"/>
 
     <style>
         body {
@@ -53,14 +54,14 @@
         <!-- GOOGLE INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-danger">Profile </h3>
+                <h3 class="red">Profile </h3>
                 <p>
                     <strong>Name</strong>: <%= user.google.name %><br>
                     <strong>Email</strong>: <%= user.google.email %><br>
                 </p>
             </div>
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-pencil-square"></span> Create new Deck </h3>
+                <h3 class="red"><span class="fa fa-pencil-square"></span> Create new Deck </h3>
 
                 <form action="/createDeck" method="post">
                     Name: <br>
@@ -75,7 +76,7 @@
 
         <div class="col-sm-6">
             <div class="well">
-                <h3 class="text-danger">Your Decks</h3>
+                <h3 class="red">Your Decks</h3>
                 <table class="table" cellpadding="15">
                     <tr>
                         <th>Access Code</th>
