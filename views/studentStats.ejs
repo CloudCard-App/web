@@ -11,7 +11,7 @@
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-                var data = google.visualization.arrayToDataTable(<%-JSON.stringify(graphData)%>, false);
+                var data = google.visualization.arrayToDataTable(<%- JSON.stringify(graphData) %>, false);
 
                 var options = {
                     title: "Students Over Time",
@@ -31,7 +31,17 @@
     </div>
 </div>
 
-<div id="curve_chart" style="width: 900px; height: 500px"></div>
+<div class="well" style="width: 80%; margin:0 auto;">
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+</div>
+<br>
+<div style="width:80%; margin:0 auto;">
+    <a href="/profile/#">
+        <button type="button" class="btn btn-default btn-lg lightBlue" aria-label="Left Align">
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Back
+        </button>
+    </a>
+</div>
 
 </body>
 
