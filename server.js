@@ -29,13 +29,16 @@ program.parse(process.argv);
 // DB configuration and setup =================================================
 if (program.dbIP) {
     mongoose.connect(program.dbIP); // connect to argumented database
+    console.log("Connecting using argumented database");
 } else {
     mongoose.connect(configDB.studentData); // use default configuration file
+    console.log("Connecting using default configuration file");
 }
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
+    console.log("Connection to DB successful!");
     app.listen(program.port, program.extIP); // listen for connections
     console.log("Listening on port     " + program.port);
 });

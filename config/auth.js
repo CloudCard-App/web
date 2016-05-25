@@ -3,6 +3,6 @@ module.exports = {
     'googleAuth': { //Can be found right after you create new credentials.
         'clientID': '932314628179-coftdulrbjgo9m61hkd163eaetr6qt61.apps.googleusercontent.com',
         'clientSecret': 'JvxyV1-RB0PPKaIhEj9c2xQS',
-        'callbackURL': 'http://localhost:8080/auth/google/callback' //Should match that defined in the Google credentials!
+        'callbackURL': 'http://cloudcard.us/auth/google/callback' //Should match that defined in the Google credentials!
     }
 };
