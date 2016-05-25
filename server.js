@@ -22,7 +22,7 @@ var program = require('commander');
 program
     .option('-d --dbIP <dbIP>', 'IP address of database', String)
     .option('-e --extIP <externalIP>', 'External IP address', String, 'localhost')
-    .option('-p --port <port>', 'Port to listen on', Number, process.env.PORT || 8080);
+    .option('-p --port <port>', 'Port to listen on', Number, process.env.PORT || 80);
 
 program.parse(process.argv);
 
