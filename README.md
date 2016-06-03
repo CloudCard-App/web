@@ -1,6 +1,8 @@
 # Flashcard-App-TeacherUI
 Online Teacher UI for the Flashcard App
 
+[![Build Status](https://travis-ci.org/Flashcard-App/Flashcard-App-TeacherUI.svg?branch=master)](https://travis-ci.org/Flashcard-App/Flashcard-App-TeacherUI)
+
 This server allows teachers to create accounts, manage decks of cards, and view student studying progress. 
 
 ## How to run
