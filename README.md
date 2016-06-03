@@ -1,9 +1,10 @@
 # Flashcard-App-TeacherUI
-Online Teacher UI for the Flashcard App
 
 [![Build Status](https://travis-ci.org/Flashcard-App/Flashcard-App-TeacherUI.svg?branch=master)](https://travis-ci.org/Flashcard-App/Flashcard-App-TeacherUI)
 
-This server allows teachers to create accounts, manage decks of cards, and view student studying progress. 
+Online Teacher UI for the Flashcard App
+
+This web application allows teachers to create accounts, manage decks of cards, and view student studying progress. 
 
 ## How to run
 
@@ -18,7 +19,7 @@ Usage: server [options]
     -p --port <port>         Port to listen on (80 by default)
 ```
 
-For example:
+## Example
 
 ```
 sudo node server.js -d 10.128.0.3:8080 -e 10.128.0.2 -p 80
