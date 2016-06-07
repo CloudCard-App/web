@@ -7,8 +7,7 @@ var app = express(); //Create our app, using our new superpowers
 
 app.set('views', __base + 'views/');
 
-var path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__base + 'public'));
 
 var mongoose = require('mongoose'); //For MongoDB
 var passport = require('passport'); //Allows us to do authentication
