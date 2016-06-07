@@ -1,7 +1,11 @@
+global.__base = __dirname + '/';
+
 // set up =====================================================================
 // get all the tools we need
 var express = require('express');
 var app = express(); //Create our app, using our new superpowers
+
+app.set('views', __base + 'views/');
 
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -13,7 +17,7 @@ var flash = require('connect-flash'); //Flash messages in session
 var morgan = require('morgan'); //Logs HTTP requests
 var cookieParser = require('cookie-parser'); //Parses cookie info
 var bodyParser = require('body-parser'); //Parses HTTP PUT and POST bodies
-var configDB = require('./config/database.js'); //Configuration stuff the db
+var configDB = require(__base + 'config/database.js'); //Configuration stuff the db
 
 var session = require('express-session'); //Sessions.
 
@@ -44,17 +48,17 @@ db.once('open', function () {
 });
 
 // Passport configuration and setup ===========================================
-require('./config/passport')(passport); // pass passport for configuration
+require(__base + 'config/passport')(passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 //app.use(bodyParser()); // get information from html forms
 
-app.set('view engine', 'ejs'); // set up ejs for templating. HTML, awesomified.
+app.set('view engine', 'ejs'); // set up ejs for templating.
 
 // signs sessions using this secret : required thing
-app.use(session({secret: 'amalgamation'})); 
+app.use(session({secret: 'amalgamation'}));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -64,4 +68,4 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // load our routes and pass in our app and fully configured passport ==========
-require('./app/routes.js')(app, passport);
+require(__base + 'routes.js')(app, passport);

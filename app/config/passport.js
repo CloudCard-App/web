@@ -1,7 +1,7 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //Get it from google
 
 // load up the user model
-var User = require('../app/models/user');
+var User = require(__base + 'models/user');
 
 // load the auth variables
 // stuff like client ID, secrets, and callback URL.

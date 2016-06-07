@@ -70,9 +70,9 @@ module.exports = function (app, passport) { //All the routing is handled here
         var url = req.url;
         var code = url.substr(url.lastIndexOf("/") + 1, url.length);
         // Action used to find actionLogs
-        var Action = require('../app/models/action');
+        var Action = require(__base + 'models/action');
         // User used to find name of deck from user
-        var User = require('../app/models/user');
+        var User = require(__base + 'models/user');
 
         // Finds all actions where the code field matches
         // Results is a cursor, we iterate over it.
