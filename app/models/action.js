@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var actionSchema = mongoose.Schema({
-    action: String,
-    code: String
+  action: String,
+  code: String
 }, {collection: 'studentData'});
 
 //Add the model for actions
