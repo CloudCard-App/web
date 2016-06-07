@@ -6,18 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5bd6a51-59b6-40c4-b94b-de6b153bf582" name="Default" comment="Add test directory">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/auth.js" afterPath="$PROJECT_DIR$/app/config/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/database.js" afterPath="$PROJECT_DIR$/app/config/database.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/passport.js" afterPath="$PROJECT_DIR$/app/config/passport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/action.js" afterPath="$PROJECT_DIR$/app/models/action.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/code.js" afterPath="$PROJECT_DIR$/app/models/code.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.js" afterPath="$PROJECT_DIR$/app/models/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/css/style.css" afterPath="$PROJECT_DIR$/app/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/server.js" afterPath="$PROJECT_DIR$/app/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utilities.js" afterPath="$PROJECT_DIR$/app/utilities.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test.js" afterPath="$PROJECT_DIR$/tests/test.js" />
     </list>
@@ -605,7 +594,7 @@
       <workItem from="1464143574341" duration="19000" />
       <workItem from="1464143605874" duration="1592000" />
       <workItem from="1464568603398" duration="1538000" />
-      <workItem from="1465272345366" duration="3412000" />
+      <workItem from="1465272345366" duration="3436000" />
     </task>
     <task id="LOCAL-00001" summary="Updated package.json, added app.yaml for Google Cloud Deployment">
       <created>1454650352377</created>
@@ -803,11 +792,18 @@
       <option name="project" value="LOCAL" />
       <updated>1465275961527</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Reformat with 2 spaces">
+      <created>1465276619225</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1465276619225</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32129000" />
+    <option name="totallyTimeSpent" value="32153000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -889,7 +885,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Updated app.yaml for manual scaling and minimal resources." />
     <MESSAGE value="Added path /studentStats/ with graph of user traffic" />
     <MESSAGE value="A user can have many codes now! Yay!" />
     <MESSAGE value="Creation of new decks!" />
@@ -914,7 +909,8 @@
     <MESSAGE value="Major Reorg 🔀&#10;&#10;Moved all server stuff into /app/" />
     <MESSAGE value="Move /public/  into /app/" />
     <MESSAGE value="Add test directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add test directory" />
+    <MESSAGE value="Reformat with 2 spaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformat with 2 spaces" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
